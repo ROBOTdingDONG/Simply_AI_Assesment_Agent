@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Assessment Tool - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Assessment Results for: {{ project_name }}</h1>
+
+    {% if survivability_assessment %}
+    <div class="assessment-card">
+        <h2>{{ survivability_assessment.module_name }}</h2>
+        <p><strong>Score:</strong> {{ survivability_assessment.score }}</p>
+        <p><strong>Summary:</strong> {{ survivability_assessment.text_summary }}</p>
+    </div>
+    {% endif %}
+
+    {% if valuation_assessment %}
+    <div class="assessment-card">
+        <h2>{{ valuation_assessment.module_name }}</h2>
+        <p><strong>Score (Potential/Confidence):</strong> {{ valuation_assessment.score }}</p>
+        <p><strong>Qualitative Label:</strong> {{ valuation_assessment.details.get('qualitative_label', 'N/A') }}</p>
+        <p><strong>Summary:</strong> {{ valuation_assessment.text_summary }}</p>
+    </div>
+    {% endif %}
+
+    {% if recommendations %}
+    <div class="recommendations">
+        <h2>Recommendations</h2>
+        <ul>
+            {% for rec in recommendations %}
+                <li>{{ rec }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if chat_history %}
+    <div class="chat-summary">
+        <h3>Final Chat Summary (Context for this Result):</h3>
+        {% for entry in chat_history %}
+            <div class="message-container {{ entry.speaker.lower() }}">
+                 <div class="message-bubble" style="max-width: 100%; margin-bottom: 5px;"> <!-- Adjusted style for summary display -->
+                    <span style="font-weight:bold;">{{ entry.speaker }}:</span> {{ entry.text }}
+                 </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <p><a href="{{ url_for('chat_interface') }}">Start New Assessment Chat</a></p>
+</body>
+</html>

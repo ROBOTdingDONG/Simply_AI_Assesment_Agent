@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Assessment Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-history" id="chatHistory">
+        {% for entry in chat_history %}
+            <div class="message-container {{ entry.speaker.lower() }}">
+                <div class="message-bubble">
+                    <div class="message-speaker">{{ entry.speaker }}</div>
+                    <div>{{ entry.text }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <form class="chat-input-container" method="POST" action="{{ url_for('chat_interface') }}">
+        <input type="text" name="message" placeholder="Type your message..." autofocus autocomplete="off" required>
+        <input type="submit" value="Send">
+    </form>
+    <form class="chat-input-container" method="POST" action="{{ url_for('reset_chat') }}" style="justify-content: flex-end; padding-top:0;">
+        <button type="submit" class="reset">Reset Chat & Assessment</button>
+    </form>
+
+    <script>
+        var chatHistory = document.getElementById("chatHistory");
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    </script>
+</body>
+</html>

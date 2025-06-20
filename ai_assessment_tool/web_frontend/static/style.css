@@ -1,0 +1,138 @@
+/* Main Body and General Styles */
+body {
+    font-family: Arial, sans-serif; /* More common sans-serif font */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f7f6; /* Light gray background */
+}
+
+/* Chat History Area */
+.chat-history {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    background-color: #ffffff; /* White background for chat area */
+}
+
+.chat-history div.message-container {
+    margin-bottom: 12px;
+    display: flex; /* For potential avatar alignment */
+}
+
+.chat-history div.message-bubble {
+    padding: 10px 15px;
+    border-radius: 18px; /* More rounded bubbles */
+    max-width: 75%;
+    line-height: 1.4;
+}
+
+.chat-history .user .message-bubble {
+    background-color: #007bff; /* Blue for user */
+    color: white;
+    margin-left: auto; /* Aligns to the right */
+    border-bottom-right-radius: 5px; /* User bubble tailish effect */
+}
+
+.chat-history .ai .message-bubble {
+    background-color: #e9ecef; /* Lighter gray for AI */
+    color: #333;
+    margin-right: auto; /* Aligns to the left */
+    border-bottom-left-radius: 5px; /* AI bubble tailish effect */
+}
+
+.chat-history .message-speaker {
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+/* TODO: Add styles for message timestamps */
+/* TODO: Add styles for user/AI avatars */
+
+/* Chat Input Area */
+.chat-input-container { /* Renamed form class for clarity */
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #ccc;
+    background-color: #f8f9fa; /* Light background for input area */
+}
+
+.chat-input-container input[type="text"] {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 20px; /* Rounded input field */
+    margin-right: 10px;
+}
+
+.chat-input-container input[type="submit"],
+.chat-input-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px; /* Rounded buttons */
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+.chat-input-container button.reset {
+    background-color: #dc3545; /* Red for reset */
+}
+.chat-input-container input[type="submit"]:hover,
+.chat-input-container button:hover {
+    opacity: 0.9;
+}
+
+/* TODO: Add styles for loading indicators */
+
+/* Result Page Styles (result_chat.html) */
+.assessment-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px; /* Softer radius */
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
+}
+.assessment-card h2 {
+    margin-top: 0;
+    color: #007bff; /* Theme color for headings */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    font-size: 1.4em;
+}
+.assessment-card p {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+.recommendations {
+    margin-top: 25px;
+}
+.recommendations h2 {
+    color: #28a745; /* Green for recommendations heading */
+    font-size: 1.4em;
+}
+.recommendations ul {
+    list-style-type: "✅ "; /* Using a checkmark */
+    padding-left: 20px;
+}
+.recommendations li {
+    margin-bottom: 10px;
+}
+.chat-summary {
+    margin-top: 25px;
+    padding:15px;
+    background-color:#f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius:8px;
+}
+.chat-summary h3 {
+    margin-top:0;
+    color: #6c757d; /* Gray for summary heading */
+}
+
+/* TODO: Add responsiveness using media queries */

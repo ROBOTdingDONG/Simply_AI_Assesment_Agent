@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Assessment Tool - Results</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .assessment-card {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .assessment-card h2 { margin-top: 0; color: #333; }
+        .assessment-card p { margin-bottom: 5px; }
+        .recommendations { margin-top: 20px; }
+        .recommendations h2 { color: #333; }
+        .recommendations ul { list-style-type: disc; padding-left: 20px; }
+        .recommendations li { margin-bottom: 8px; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Assessment Results for: {{ project_name }}</h1>
+
+    {% if survivability_assessment %}
+    <div class="assessment-card">
+        <h2>{{ survivability_assessment.module_name }}</h2>
+        <p><strong>Score:</strong> {{ survivability_assessment.score }}</p>
+        <p><strong>Summary:</strong> {{ survivability_assessment.text_summary }}</p>
+        {% if survivability_assessment.details %}
+            <p><small>Details Considered: {{ survivability_assessment.details.get('rules_considered', 'N/A') }}</small></p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if valuation_assessment %}
+    <div class="assessment-card">
+        <h2>{{ valuation_assessment.module_name }}</h2>
+        <p><strong>Score (Potential/Confidence):</strong> {{ valuation_assessment.score }}</p>
+        <p><strong>Qualitative Label:</strong> {{ valuation_assessment.details.get('qualitative_label', 'N/A') }}</p>
+        <p><strong>Summary:</strong> {{ valuation_assessment.text_summary }}</p>
+        {% if valuation_assessment.details %}
+             <p><small>Details Considered: {{ valuation_assessment.details.get('rules_considered', 'N/A') }}</small></p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {# Example for displaying placeholder info if you passed it
+    {% if placeholder_info %}
+    <div class="assessment-card">
+        <h2>Placeholder Modules Status</h2>
+        {% for info in placeholder_info %}
+            <p>{{ info }}</p>
+        {% endfor %}
+    </div>
+    {% endif %} #}
+
+
+    {% if recommendations %}
+    <div class="recommendations">
+        <h2>Recommendations</h2>
+        <ul>
+            {% for rec in recommendations %}
+                <li>{{ rec }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <p><a href="{{ url_for('index') }}">Assess Another Project</a></p>
+</body>
+</html>
